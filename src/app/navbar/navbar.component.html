@@ -1,13 +1,13 @@
 <div class="bg-[#36454f] h-[100px] w-full sticky top-0 left-0 z-50">
   <div
-    class="w-[90%] max-w-full mx-auto px-2 flex items-center justify-between text-white h-full"
+    class="w-[95%] md:w-[90%] max-w-full mx-auto px-2 flex items-center justify-between text-white h-full"
   >
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
       <i
         class="bi bi-list inline-block md-1000:hidden text-2xl cursor-pointer"
         (click)="showMenuBar = !showMenuBar"
       ></i>
-      <a routerLink="/" class="text-[32px]">Academio.</a>
+      <a routerLink="/" class="text-[28px] md:text-[32px]">Academio.</a>
     </div>
     <!-- <a routerLink="/">
       <img
@@ -31,10 +31,10 @@
         >Contact</a
       >
     </div>
-    <div class="flex w-[140px] md:w-[200px] justify-between items-center">
+    <div class="flex w-[120px] md:w-[200px] justify-between items-center">
       <a routerLink="/login"
         ><button
-          class="bg-primary px-5 py-2 rounded-md hidden md-1000:block"
+          class="bg-primary px-3 py-1 text-[14px] md:text-base md:px-5 md:py-2 rounded-md"
           *ngIf="!isAuthenticated"
         >
           Login
@@ -42,7 +42,7 @@
       >
       <a
         ><button
-          class="bg-primary px-5 py-2 rounded-md hidden md-1000:block"
+          class="bg-primary px-3 py-1 text-[14px] md:text-base md:px-5 md:py-2 rounded-md"
           *ngIf="isAuthenticated"
           (click)="onLogout()"
         >
@@ -108,10 +108,10 @@
   </div>
 </div>
 <div
-  class="fixed block md-1000:hidden top-0 right-0 w-[70%] md:w-[50%] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white py-0 px-10 transition duration-300 ease-in-out overflow-y-scroll"
+  class="fixed block md-1000:hidden top-0 left-0 w-[70%] md:w-[50%] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white py-0 px-10 transition duration-300 ease-in-out"
   [ngClass]="{
-    'translate-x-[6px]': showMenuBar,
-    'translate-x-full': !showMenuBar
+    '-translate-x-0': showMenuBar,
+    '-translate-x-[101%]': !showMenuBar
   }"
 >
   <div
@@ -146,25 +146,6 @@
       routerLinkActive="underline text-white"
       (click)="showMenuBar = false"
       >Contact</a
-    >
-
-    <a routerLink="/login"
-      ><button
-        class="bg-primary px-5 py-2 rounded-md"
-        (click)="showMenuBar = false"
-        *ngIf="!isAuthenticated"
-      >
-        Login
-      </button></a
-    >
-    <a
-      ><button
-        class="bg-primary px-5 py-2 rounded-md"
-        *ngIf="isAuthenticated"
-        (click)="onLogout(); showMenuBar = false"
-      >
-        Logout
-      </button></a
     >
   </div>
 </div>
