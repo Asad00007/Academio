@@ -1,1 +1,89 @@
-<p>checkout works!</p>
+<div
+  class="bg-[#efefef] min-h-height-minus-hundred py-10 px-5 md:p-10 flex flex-col md-900:flex-row gap-3"
+>
+  <div class="flex flex-col gap-3 w-full md:basis-[75%]">
+    <div
+      class="w-full max-w-full px-3 py-10 bg-white flex items-center justify-center flex-1 h-auto rounded-md"
+    >
+      <div
+        class="space-y-5 md:w-[80%] max-w-full mx-auto flex flex-col items-center justify-center"
+      >
+        <h1 class="text-[24px] font-semibold">Academio Checkout</h1>
+        <button
+          class="bg-primary px-3 w-[80%] py-1 text-[14px] md:text-base md:px-5 md:py-2 rounded-md text-white italic"
+        >
+          Paypal
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-full max-w-full mx-auto px-3 py-10 bg-white flex-1 rounded-md"
+    >
+      <div class="md:w-[85%] max-w-full flex justify-center gap-2">
+        <span
+          class="px-[18px] py-2 rounded-full border self-start hidden md:block"
+          >1</span
+        >
+        <div class="space-y-5">
+          <h1 class="text-[24px] font-semibold">Enter Your Email</h1>
+          <p class="opacity-80">
+            This is a dummy input box which does not do anything.
+          </p>
+          <div class="bg-[#efefef] w-full flex">
+            <input
+              type="email"
+              class="bg-transparent flex-1 p-2 outline-none"
+              placeholder="Email"
+            />
+            <div class="bg-[#d6d4d4] p-2 px-4">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+          <p class="opacity-80 text-[12px]">
+            By providing your email, you agree to out Privacy Policy and Terms
+            of Service.
+          </p>
+          <button
+            class="bg-primary w-[280px] py-1 text-[14px] md:text-base md:px-5 md:py-2 rounded-md text-white"
+          >
+            Subscribe to our Newsletter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col gap-3">
+    <div
+      class="bg-white flex-1 min-w-[300px] px-5 py-10 rounded-md max-h-[500px] h-[500px] overflow-auto"
+    >
+      <div class="flex items-center justify-between">
+        <div class="flex gap-2 font-semibold">
+          <i class="bi bi-cart3 text-2xl md:text-3xl cursor-pointer"></i>
+          <h1 class="text-[20px]">Cart({{ selectedItems.length }})</h1>
+        </div>
+        <span class="text-[20px] font-semibold">$125</span>
+      </div>
+      <div
+        *ngFor="let item of selectedItems"
+        class="opacity-80 flex items-center justify-between gap-2 space-y-4 border-b mt-3"
+      >
+        <span>
+          {{ item }}
+        </span>
+        <i
+          class="bi bi-trash3 cursor-pointer"
+          (click)="removeSelected(item)"
+        ></i>
+      </div>
+    </div>
+    <div class="bg-white min-w-[300px] px-5 py-5 rounded-md flex">
+      <button
+        class="bg-primary py-2 flex-1 px-3 rounded-md text-white"
+        (click)="selectedItems.length < 1 ? '' : placeOrder()"
+        [ngStyle]="{ opacity: selectedItems.length < 1 ? '60%' : '100%' }"
+      >
+        Place Order
+      </button>
+    </div>
+  </div>
+</div>
