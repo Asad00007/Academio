@@ -81,7 +81,7 @@
   </div>
   <div class="text-center text-[30px] font-serif">Your Cart</div>
   <div
-    class="opacity-60 text-[12px] text-center"
+    class="opacity-60 text-[12px] md:text-[14px] text-center"
     *ngIf="selectedItems.length === 0"
   >
     Seems like your cart is empty. Add some courses to see here.
@@ -89,7 +89,7 @@
   <div class="flex flex-col gap-5 opacity-70" *ngIf="selectedItems.length > 0">
     <div
       *ngFor="let item of selectedItems; let i = index"
-      class="border-b pb-2 flex items-center justify-between cursor-pointer text-[12px] gap-2"
+      class="border-b pb-2 flex items-center justify-between cursor-pointer text-[12px] md:text-[14px] gap-2"
     >
       <span>{{ item }}</span>
       <i class="bi bi-trash3" (click)="removeSelected(item)"></i>

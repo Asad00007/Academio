@@ -10,8 +10,9 @@
     Added
   </div>
   <div
-    class="w-[275px] h-[312px] border rounded-lg bg-white p-4 flex flex-col"
+    class="w-[275px] h-[312px] border rounded-lg bg-white p-4 flex flex-col cursor-pointer"
     [ngStyle]="hovered ? { boxShadow: '0px 0px 10px rgba(0,0,0,0.15)' } : {}"
+    (click)="viewCourse(courses.name)"
   >
     <img [src]="courses.image" alt="" class="h-1/2 object-cover" />
     <div class="flex flex-col gap-2 mt-2 p-2 h-full">
