@@ -1,0 +1,48 @@
+<div class="bg-back min-h-height-minus-hundred px-4">
+  <div class="w-[1300px] max-w-full mx-auto px-1 py-14 space-y-10">
+    <h1 class="text-[20px] font-semibold">Learn Essential Skills for Free</h1>
+    <p class="text-[14px] md:text-base">
+      Free Courses: Explore a variety of free courses across different subjects.
+      Learn new skills and knowledge without financial investment.
+    </p>
+    <h1 class="text-[20px] md:text-[28px] font-semibold">
+      Choose the Free Course That Aligns Best With Your Educational Goals
+    </h1>
+    <form class="flex w-full shadow-md bg-white" (ngSubmit)="searchCourses()">
+      <input
+        type="text"
+        placeholder="JavaScript"
+        class="p-2 px-3 outline-none border border-r-0 flex-1 bg-transparent"
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+      />
+      <span
+        class="hidden md:flex items-center justify-center border-t border-b text-xl px-3 cursor-pointer"
+        *ngIf="searchTerm !== ''"
+        (click)="clearTerm()"
+        >&times;</span
+      >
+      <button class="bg-gray-200 px-5 border" type="submit">Search</button>
+    </form>
+    <div
+      *ngIf="noCoursesMessage"
+      class="flex items-center justify-center flex-col gap-10"
+    >
+      {{ noCoursesMessage }}
+      <button
+        class="flex items-center justify-center bg-primary px-3 py-2 rounded-md text-white"
+        (click)="showAll()"
+      >
+        Show All Courses
+      </button>
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 md-900:grid-cols-3 md-1200:grid-cols-4 gap-5 mx-auto place-items-center"
+    >
+      <app-home-cards
+        *ngFor="let item of filteredCourses"
+        [courses]="item"
+      ></app-home-cards>
+    </div>
+  </div>
+</div>

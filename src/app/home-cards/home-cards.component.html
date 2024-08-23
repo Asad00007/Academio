@@ -1,0 +1,80 @@
+<div
+  (mouseenter)="hovered = true"
+  (mouseleave)="hovered = false"
+  class="relative"
+>
+  <div
+    class="absolute p-2 rounded-br-xl bg-primary text-white rounded-tl-md"
+    *ngIf="checkSelected(courses.name)"
+  >
+    Added
+  </div>
+  <div
+    class="w-[275px] h-[312px] border rounded-lg bg-white p-4 flex flex-col"
+    [ngStyle]="hovered ? { boxShadow: '0px 0px 10px rgba(0,0,0,0.15)' } : {}"
+  >
+    <img [src]="courses.image" alt="" class="h-1/2 object-cover" />
+    <div class="flex flex-col gap-2 mt-2 p-2 h-full">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex gap-2 items-center">
+          <div
+            class="p-2 border rounded-md overflow-hidden"
+            [ngClass]="{
+              'rounded-bl-none': hovered,
+              'rounded-br-none': hovered
+            }"
+          >
+            <img
+              [src]="
+                courses.provider === 'Meta'
+                  ? '../../assets/Meta.png'
+                  : '../../assets/Google.png'
+              "
+              alt=""
+              class="w-[24px] h-[24px] rounded-md overflow-hidden object-contain"
+            />
+          </div>
+          <span class="text-[12px] opacity-80">{{ courses.provider }}</span>
+        </div>
+        <div class="space-x-2">
+          <i class="bi bi-star-fill text-yellow-400"></i>
+          <span>{{ courses.rating }}</span>
+        </div>
+      </div>
+      <h4 class="font-semibold leading-normal">{{ courses.name | shorten }}</h4>
+      <div class="mt-auto text-[14px]">{{ courses.category }}</div>
+    </div>
+  </div>
+  <div
+    class="border border-t-0 rounded-lg absolute -bottom-10 left-0 z-40"
+    [ngStyle]="
+      hovered
+        ? {
+            display: 'flex',
+            transitionAll: '3s ease-in-out',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: 'white',
+            width: '275px',
+            height: 'auto',
+            padding: '10px',
+            scale: 1
+          }
+        : { scale: 0 }
+    "
+  >
+    <button
+      class="border px-3 py-1 rounded-md border-primary text-primary hover:bg-primary hover:text-white transition"
+      (click)="updateSelected(courses.name)"
+    >
+      {{ checkSelected(courses.name) ? "Remove" : "Buy now" }}
+    </button>
+
+    <button
+      class="border px-3 py-1 rounded-md border-primary text-primary hover:bg-primary hover:text-white transition"
+      (click)="viewCourse(courses.name)"
+    >
+      Details
+    </button>
+  </div>
+</div>

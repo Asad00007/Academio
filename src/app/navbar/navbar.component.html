@@ -1,0 +1,164 @@
+<div class="bg-[#36454f] h-[100px] w-full sticky top-0 left-0 z-50">
+  <div
+    class="w-[90%] max-w-full mx-auto px-2 flex items-center justify-between text-white h-full"
+  >
+    <div class="flex items-center gap-4">
+      <i
+        class="bi bi-list inline-block md-1000:hidden text-2xl cursor-pointer"
+        (click)="showMenuBar = !showMenuBar"
+      ></i>
+      <a routerLink="/" class="text-[32px]">Academio.</a>
+    </div>
+    <!-- <a routerLink="/">
+      <img
+        src="https://assets.coursehero.com/ssi/27b7037f838acd0278f7.svg"
+        alt=""
+        class="text-white fill-white"
+      />
+    </a> -->
+    <div class="md:space-x-10 hidden md-1000:block">
+      <a
+        routerLink="/"
+        routerLinkActive="underline text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a routerLink="/about" routerLinkActive="underline text-white">About</a>
+      <a routerLink="/courses" routerLinkActive="underline text-white"
+        >Courses</a
+      >
+      <a routerLink="/contact" routerLinkActive="underline text-white"
+        >Contact</a
+      >
+    </div>
+    <div class="flex w-[140px] md:w-[200px] justify-between items-center">
+      <a routerLink="/login"
+        ><button
+          class="bg-primary px-5 py-2 rounded-md hidden md-1000:block"
+          *ngIf="!isAuthenticated"
+        >
+          Login
+        </button></a
+      >
+      <a
+        ><button
+          class="bg-primary px-5 py-2 rounded-md hidden md-1000:block"
+          *ngIf="isAuthenticated"
+          (click)="onLogout()"
+        >
+          Logout
+        </button></a
+      >
+      <div class="relative">
+        <i
+          class="bi bi-cart3 text-xl md:text-3xl cursor-pointer"
+          (click)="showSideBar = true"
+        ></i>
+        <div
+          class="absolute px-2 text-[14px] bottom-8 left-5 bg-red-400 rounded-full flex justify-center items-center"
+          *ngIf="selectedItems.length !== 0"
+        >
+          {{ selectedItems.length }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="fixed top-0 right-0 w-[300px] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white p-5 transition duration-300 ease-in-out overflow-y-scroll"
+  [ngClass]="{ 'translate-x-0': showSideBar, 'translate-x-full': !showSideBar }"
+>
+  <div
+    class="absolute top-5 right-10 text-[40px] cursor-pointer"
+    (click)="showSideBar = false"
+  >
+    &times;
+  </div>
+  <div class="text-center text-[30px]">Your Cart</div>
+  <div
+    class="opacity-60 text-[14px] text-center"
+    *ngIf="selectedItems.length === 0"
+  >
+    Seems like your cart is empty. Add some courses to see here.
+  </div>
+  <div class="flex flex-col gap-5 opacity-70" *ngIf="selectedItems.length > 0">
+    <div
+      *ngFor="let item of selectedItems; let i = index"
+      class="border-b pb-2 flex items-center justify-between cursor-pointer text-[14px] gap-2"
+    >
+      <span>{{ item }}</span>
+      <i class="bi bi-trash3" (click)="removeSelected(item)"></i>
+    </div>
+  </div>
+  <div
+    class="flex items-center justify-center"
+    *ngIf="selectedItems.length > 0"
+  >
+    <a routerLink="/checkout">
+      <button
+        class="bg-primary rounded-md px-3 py-2"
+        (click)="showSideBar = false"
+      >
+        Checkout
+      </button>
+    </a>
+  </div>
+</div>
+<div
+  class="fixed block md-1000:hidden top-0 right-0 w-[70%] md:w-[50%] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white py-0 px-10 transition duration-300 ease-in-out overflow-y-scroll"
+  [ngClass]="{ 'translate-x-0': showMenuBar, 'translate-x-full': !showMenuBar }"
+>
+  <div
+    class="absolute top-5 right-10 text-[40px] cursor-pointer"
+    (click)="showMenuBar = false"
+  >
+    &times;
+  </div>
+  <h1 class="text-[30px]">MENU</h1>
+  <div class="space-y-10 flex flex-col">
+    <a
+      routerLink="/"
+      routerLinkActive="underline text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="showMenuBar = false"
+      >Home</a
+    >
+    <a
+      routerLink="/about"
+      routerLinkActive="underline text-white"
+      (click)="showMenuBar = false"
+      >About</a
+    >
+    <a
+      routerLink="/courses"
+      routerLinkActive="underline text-white"
+      (click)="showMenuBar = false"
+      >Courses</a
+    >
+    <a
+      routerLink="/contact"
+      routerLinkActive="underline text-white"
+      (click)="showMenuBar = false"
+      >Contact</a
+    >
+
+    <a routerLink="/login"
+      ><button
+        class="bg-primary px-5 py-2 rounded-md"
+        (click)="showMenuBar = false"
+        *ngIf="!isAuthenticated"
+      >
+        Login
+      </button></a
+    >
+    <a
+      ><button
+        class="bg-primary px-5 py-2 rounded-md"
+        *ngIf="isAuthenticated"
+        (click)="onLogout(); showMenuBar = false"
+      >
+        Logout
+      </button></a
+    >
+  </div>
+</div>

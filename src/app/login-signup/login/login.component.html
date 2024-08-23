@@ -1,0 +1,74 @@
+<!-- <div class="min-h-height-minus-hundred flex items-center justify-center">
+  <div class="border-2 p-5 rounded-xl w-[400px] shadow-md">
+    <h1 class="text-[30px] text-center font-semibold mb-2">Login</h1>
+    <form
+      class="flex flex-col gap-2"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        formControlName="username"
+        id="username"
+        class="border-2 p-2 rounded-md"
+      />
+      <span
+        *ngIf="
+          !loginForm.get('username').valid && loginForm.get('username').touched
+        "
+        >Please Enter a valid username!</span
+      >
+      <label for="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        formControlName="email"
+        class="border-2 p-2 rounded-md"
+      />
+      <span
+        *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+        >Enter a valid Email</span
+      >
+      <label for="password">Password</label>
+      <div class="border-2 flex rounded-md">
+        <input
+          [type]="passType()"
+          name="password"
+          id="password"
+          formControlName="password"
+          class="flex-1 px-2"
+        />
+        <span
+          class="cursor-pointer bg-gray-100 p-2"
+          (click)="showPass = !showPass"
+          ><p *ngIf="showPass; else elseBlock">Hide</p>
+        </span>
+        <ng-template #elseBlock>Show</ng-template>
+      </div>
+      <span
+        *ngIf="
+          loginForm.get('password').touched && !loginForm.get('password').valid
+        "
+      >
+        Password should be 8 characters or more!
+      </span>
+      <button
+        class="bg-primary mt-2 text-white rounded-md py-3 cursor-pointer"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Submit
+      </button>
+    </form>
+    <div class="flex items-center justify-center mt-2 gap-1">
+      Don't have an account yet?
+      <a routerLink="/signup" class="text-purple-950 underline cursor-pointer">
+        Signup</a
+      >
+    </div>
+  </div>
+</div> -->
+<app-auth></app-auth>

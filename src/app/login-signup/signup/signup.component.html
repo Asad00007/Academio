@@ -1,0 +1,138 @@
+<div class="min-h-height-minus-hundred flex items-center justify-center">
+  <div class="border-2 p-5 rounded-xl w-[400px] shadow-md">
+    <h1 class="text-[30px] text-center font-semibold mb-2">Signup</h1>
+    <form
+      class="flex flex-col gap-2"
+      [formGroup]="signupForm"
+      (ngSubmit)="onSignup()"
+    >
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        formControlName="username"
+        class="border-2 p-2"
+      />
+      <span
+        *ngIf="
+          !signupForm.get('username').valid &&
+          signupForm.get('username').touched
+        "
+        >Enter a valid username</span
+      >
+
+      <label for="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        formControlName="email"
+        id="email"
+        class="border-2 p-2"
+      />
+
+      <label for="password">Password</label>
+      <div class="border-2 flex">
+        <input
+          [type]="passType()"
+          name="password"
+          formControlName="password"
+          id="password"
+          class="flex-1 px-2"
+        />
+        <span
+          class="cursor-pointer bg-gray-100 p-2"
+          (click)="showPass = !showPass"
+          ><p *ngIf="showPass; else elseBlock">Hide</p>
+        </span>
+        <ng-template #elseBlock>Show</ng-template>
+      </div>
+      <span
+        *ngIf="
+          !signupForm.get('password').valid &&
+          signupForm.get('password').value !== null &&
+          signupForm.get('password').touched
+        "
+        >Password should be more than 7 characters</span
+      >
+      <span
+        *ngIf="
+          signupForm.get('password').value === null &&
+          signupForm.get('password').touched
+        "
+        >Password should not be empty</span
+      >
+
+      <label for="food">Favourite food</label>
+      <select name="food" id="food" formControlName="food" class="border-2 p-2">
+        <option value="chicken">Chicken</option>
+        <option value="mutton">Mutton</option>
+        <option value="beef">Beef</option>
+      </select>
+
+      <button
+        class="bg-primary text-white rounded-md cursor-pointer mt-2 py-3"
+        type="submit"
+        [disabled]="!signupForm.valid"
+      >
+        Submit
+      </button>
+    </form>
+
+    <!-- <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="flex justify-evenly items-center">
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-danger">Cancel</button>
+      </div>
+      <div class="flex flex-col">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="border-2 p-2 rounded-md"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="imagePath">Image URL</label>
+        <input
+          type="text"
+          id="imagePath"
+          formControlName="imagePath"
+          class="border-2 p-2 rounded-md"
+          #imagePath
+        />
+      </div>
+      <div><img [src]="imagePath.value" alt="" class="img-responsive" /></div>
+      <div>
+        <label for="image">Add Image</label>
+
+        <input
+          type="file"
+          class="hidden"
+          id="image"
+          #images
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <div>
+        <img [src]="imgSrc" alt="" />
+      </div>
+      <div class="flex flex-col">
+        <label for="description">Description</label>
+        <textarea
+          type="text"
+          id="description"
+          formControlName="description"
+          class="border-2 p-2 rounded-md"
+        ></textarea>
+      </div>
+    </form> -->
+    <div class="flex items-center justify-center mt-2 gap-1">
+      Already have an account?
+      <a routerLink="/login" class="text-purple-950 underline cursor-pointer">
+        Login</a
+      >
+    </div>
+  </div>
+</div>
