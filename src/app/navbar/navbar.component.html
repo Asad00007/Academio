@@ -7,7 +7,9 @@
         class="bi bi-list inline-block md-1000:hidden text-2xl cursor-pointer"
         (click)="showMenuBar = !showMenuBar"
       ></i>
-      <a routerLink="/" class="text-[28px] md:text-[32px]">Academio.</a>
+      <a routerLink="/" class="text-[28px] md:text-[32px] font-serif"
+        >Academio.</a
+      >
     </div>
     <!-- <a routerLink="/">
       <img
@@ -55,7 +57,7 @@
           (click)="showSideBar = true"
         ></i>
         <div
-          class="absolute px-2 text-[14px] bottom-8 left-5 bg-red-400 rounded-full flex justify-center items-center"
+          class="absolute px-2 text-[14px] bottom-8 left-3 md:left-5 bg-red-400 rounded-full flex justify-center items-center"
           *ngIf="selectedItems.length !== 0"
         >
           {{ selectedItems.length }}
@@ -65,21 +67,21 @@
   </div>
 </div>
 <div
-  class="fixed top-0 right-0 w-[300px] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white p-5 transition duration-300 ease-in-out overflow-y-scroll"
+  class="fixed top-0 right-0 w-[250px] md:w-[300px] bg-[#36454f] h-screen z-50 shadow-black space-y-7 text-white p-5 transition duration-300 ease-in-out overflow-y-scroll"
   [ngClass]="{
     'translate-x-[6px]': showSideBar,
     'translate-x-full': !showSideBar
   }"
 >
   <div
-    class="absolute top-5 right-10 text-[40px] cursor-pointer"
+    class="absolute top-5 right-5 text-[40px] cursor-pointer"
     (click)="showSideBar = false"
   >
     &times;
   </div>
-  <div class="text-center text-[30px]">Your Cart</div>
+  <div class="text-center text-[30px] font-serif">Your Cart</div>
   <div
-    class="opacity-60 text-[14px] text-center"
+    class="opacity-60 text-[12px] text-center"
     *ngIf="selectedItems.length === 0"
   >
     Seems like your cart is empty. Add some courses to see here.
@@ -87,7 +89,7 @@
   <div class="flex flex-col gap-5 opacity-70" *ngIf="selectedItems.length > 0">
     <div
       *ngFor="let item of selectedItems; let i = index"
-      class="border-b pb-2 flex items-center justify-between cursor-pointer text-[14px] gap-2"
+      class="border-b pb-2 flex items-center justify-between cursor-pointer text-[12px] gap-2"
     >
       <span>{{ item }}</span>
       <i class="bi bi-trash3" (click)="removeSelected(item)"></i>
@@ -120,31 +122,35 @@
   >
     &times;
   </div>
-  <h1 class="text-[30px]">MENU</h1>
+  <h1 class="text-[30px] font-serif">MENU</h1>
   <div class="space-y-10 flex flex-col">
     <a
       routerLink="/"
       routerLinkActive="underline text-white"
       [routerLinkActiveOptions]="{ exact: true }"
       (click)="showMenuBar = false"
+      class="font-sans"
       >Home</a
     >
     <a
       routerLink="/about"
       routerLinkActive="underline text-white"
       (click)="showMenuBar = false"
+      class="font-sans"
       >About</a
     >
     <a
       routerLink="/courses"
       routerLinkActive="underline text-white"
       (click)="showMenuBar = false"
+      class="font-sans"
       >Courses</a
     >
     <a
       routerLink="/contact"
       routerLinkActive="underline text-white"
       (click)="showMenuBar = false"
+      class="font-sans"
       >Contact</a
     >
   </div>
